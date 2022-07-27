@@ -5,7 +5,7 @@ download_dir="$HOME/Downloads"
 
 selected=$(curl -s "$url" -A "uwu" | tr '<|>' '\n' | sed -nE 's_a href="(.*model/[^"]*)"$_\1_p' | fzf -d'/' --with-nth 5)
 
-[[ -z "$selected" ]] && printf "%s\n" "[!] Nothing to download" && exit 1
+[ -z "$selected" ] && printf "%s\n" "[!] Nothing to download" && exit 1
 
 req=$(curl -s "$selected" | tr '<|>' '\n' | sed -nE 's_a href="(.*\.zip[^"]*)".*_\1_p; s_.*content="(.*\.webp[^"]*)".*_\1_p')
 
