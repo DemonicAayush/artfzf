@@ -41,3 +41,6 @@ sudo chmod +x /usr/local/bin/artfzf
 # Dependencies
 - [`fzf`](https://github.com/junegunn/fzf) - for selection screen.
 - [`aria2`](https://github.com/aria2/aria2) - download manager.
+
+## Optional Dependency
+- [`w3m`](https://github.com/tats/w3m) - for image preview (for shell script)
