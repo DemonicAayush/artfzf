@@ -5,6 +5,7 @@ import re
 import subprocess
 import platform
 import os
+import random
 
 headers = {
         "User-Agent": "uwu"
@@ -13,6 +14,18 @@ headers = {
 client = httpx.Client(headers=headers, follow_redirects=True, timeout=None)
 
 url = "https://artgare.com"
+
+color = [  
+    "\u001b[31m",
+    "\u001b[32m",
+    "\u001b[33m",
+    "\u001b[34m",
+    "\u001b[35m",
+    "\u001b[36m",
+    "\u001b[37m"
+]
+
+color_idx = random.randint(0, len(color)-1)
 
 def determine_path() -> str:
 
@@ -36,14 +49,14 @@ def download(path, link):
     aria2_process = subprocess.Popen(args)
     aria2_process.wait()
 
-    print(f"Downloaded at {path}")
+    print(f"{color[color_idx]}Downloaded at {path}\u001b[0m")
 
 
 def __artfzf__():
     resp = client.get(url)
     
     hmmm = re.findall(r'https://artgare.com/free-3d-model/[a-zA-Z0-9%-]*/', resp.text)
-    #print(hmmm)
+    
     unique_list = []
 
     for x in hmmm:
@@ -53,7 +66,7 @@ def __artfzf__():
     selected = fzf_prompt(unique_list)
 
     if selected == None:
-        print("[!] Nothing to download.")
+        print(f"{color[color_idx]}[!] Nothing to download.\u001b[0m")
         exit(1)
 
     req = client.get(selected)
@@ -61,7 +74,6 @@ def __artfzf__():
     downloadlink = re.findall(r'href="(https://cdn.discordapp.com/.*?)"', req.text)
 
     show = fzf_prompt(downloadlink, select_first=True)
-    #show = show.replace("amp;", "")
 
     path: str = determine_path()
     download(path, show)
