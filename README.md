@@ -30,6 +30,13 @@ pip install .
 ```
 This command is to be executed from the directory where the repository is located.
 
+3. cURL the shell script to your path
+<i> This method only works on MacOS and Linux </i>
+```sh
+sudo curl -sL "https://raw.githubusercontent.com/demonicaayush/artfzf/master/artfzf.sh" -o /usr/local/bin/artfzf
+sudo chmod +x /usr/local/bin/artfzf
+```
+
 # Dependencies
 - [`fzf`](https://github.com/junegunn/fzf) - for selection screen.
 - [`aria2`](https://github.com/aria2/aria2) - download manager.
