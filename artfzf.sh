@@ -10,6 +10,9 @@ download() {
 main() {
     resp=$(curl -s "${url}" -A "uwu" | grep -Eo "https://artgare.com/free-3d-model/[a-zA-Z0-9%-]*/" | uniq)
     selected=$(printf "%s\n" "$resp" | fzf)
+    
+    [ -z "$selected" ] && printf "%s\n" "[!] Nothing to download" && exit 1
+
     req=$(curl -s "$selected" | grep -Eo "https://cdn.discordapp.com/attachments/[0-9]{18}/[0-9]{18}/[a-zA-Z0-9_-]*.zip")
     download "$req"
 }
