@@ -1,0 +1,3 @@
+httpx>=0.23.0
+fzf.py @ git+https://github.com/justfoolingaround/fzf.py
+regex>=2022.3.15
