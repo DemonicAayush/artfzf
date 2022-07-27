@@ -13,7 +13,7 @@ w3m "$(printf "%s" "$req" | head -1 )"
 
 printf "%s" "Are you sure you want to download (Y/N): " && read -r query
 
-if [ "$query" = "Y" ] || ["$query" = "y" ]; then
+if [ "$query" = "Y" ] || [ "$query" = "y" ]; then
     aria2c --dir="${download_dir}" "$(printf "%s" "$req" | tail -1)"
 else
     printf "%s\n" "Exiting..."
