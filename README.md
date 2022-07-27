@@ -31,6 +31,7 @@ pip install .
 This command is to be executed from the directory where the repository is located.
 
 3. cURL the shell script to your path
+
 <i> This method only works on MacOS and Linux </i>
 ```sh
 sudo curl -sL "https://raw.githubusercontent.com/demonicaayush/artfzf/master/artfzf.sh" -o /usr/local/bin/artfzf
