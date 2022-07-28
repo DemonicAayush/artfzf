@@ -13,7 +13,7 @@ headers = {
 
 client = httpx.Client(headers=headers, follow_redirects=True, timeout=None)
 
-url = "https://artgare.com"
+url = "https://artgare.com/3d-library-listing-sitemap.xml"
 
 color = [  
     "\u001b[31m",
@@ -55,15 +55,17 @@ def download(path, link):
 def __artfzf__():
     resp = client.get(url)
     
-    hmmm = re.findall(r'https://artgare.com/free-3d-model/[a-zA-Z0-9%-]*/', resp.text)
+    hmmm = re.findall(r'<loc>(.*?)</loc>', resp.text)
     
+    """
     unique_list = []
 
     for x in hmmm:
         if x not in unique_list:
             unique_list.append(x)
+    """
 
-    selected = fzf_prompt(unique_list)
+    selected = fzf_prompt(hmmm)
 
     if selected == None:
         print(f"{color[color_idx]}[!] Nothing to download.\u001b[0m")
