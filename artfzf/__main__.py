@@ -57,14 +57,6 @@ def __artfzf__():
     
     hmmm = re.findall(r'<loc>(.*?)</loc>', resp.text)
     
-    """
-    unique_list = []
-
-    for x in hmmm:
-        if x not in unique_list:
-            unique_list.append(x)
-    """
-
     selected = fzf_prompt(hmmm)
 
     if selected == None:
@@ -73,7 +65,7 @@ def __artfzf__():
 
     req = client.get(selected)
 
-    downloadlink = re.findall(r'href="(https://cdn.discordapp.com/.*?)"', req.text)
+    downloadlink = re.findall(r'href="(https://dl.dropboxusercontent/[a-z]{1}/[a-zA-Z0-9]{15}/.*?)"', req.text)
 
     show = fzf_prompt(downloadlink, select_first=True)
 
